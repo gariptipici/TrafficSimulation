@@ -11,8 +11,10 @@ import com.luxoft.trafficsimulation.vehicles.*;
 public class IncidentListener implements ApplicationListener<Incident> {
     @Override
     public void onApplicationEvent(Incident incident) {
-    	Vehicle vehicle = incident.getVehicle();
+    	Vehicle vehicle = (Vehicle) incident.getSource();
+    	Vehicle otherVehicle = incident.getVehicle();
     	vehicle.setCurrentFuelQuantity(0.0);
+    	otherVehicle.setCurrentFuelQuantity(0.0);
 
 
         

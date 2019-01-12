@@ -1,42 +1,40 @@
 package com.luxoft.trafficsimulation.vehicles;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 
-import com.luxoft.trafficsimulation.events.Alert;
-import com.luxoft.trafficsimulation.events.Incident;
 
 public abstract class Vehicle {
-
+	private Integer ID;
 	private Double tankSize;
 	private Double consumptionPer5Sec;
 	private Double currentFuelQuantity;
 
-	@Autowired
-	private ApplicationEventPublisher applicationEventPublisher;
+	
 
-	public Vehicle(Double tankSize, Double consumptionPer5Sec) {
+	public Vehicle(Integer ID, Double tankSize, Double consumptionPer5Sec) {
+		this.ID = ID;
 		this.setConsumptionPer5Sec(consumptionPer5Sec);
 		this.setTankSize(tankSize);
 		this.setCurrentFuelQuantity(tankSize);
 	}
-
-	public void alert() {
-		Alert alert = new Alert(this, this);
-		applicationEventPublisher.publishEvent(alert);
+	
+	public void response() {
+		consume();
+		incident();
+		alert();
 	}
 
-	public void incident() {
-		Incident incident = new Incident(this, this);
-		applicationEventPublisher.publishEvent(incident);
-	}
+
+
+	protected abstract void incident();
+
+	protected abstract void alert();
 
 	public void refuel() {
 		setCurrentFuelQuantity(getTankSize());
 
 	}
 
-	public void consume() {
+	private void consume() {
 		setCurrentFuelQuantity(getCurrentFuelQuantity() - getConsumptionPer5Sec());
 	}
 
@@ -62,6 +60,14 @@ public abstract class Vehicle {
 
 	public void setCurrentFuelQuantity(Double currentFuelQuantity) {
 		this.currentFuelQuantity = currentFuelQuantity;
+	}
+
+	public Integer getID() {
+		return ID;
+	}
+
+	public void setID(Integer iD) {
+		ID = iD;
 	}
 
 }

@@ -11,13 +11,13 @@ public class VehicleFactory {
 	
 
 	
-	public static Vehicle getVehicle(Class<? extends Vehicle> clazz) {
+	public static Vehicle getVehicle(Integer ID, Class<? extends Vehicle> clazz) {
 		if(clazz.equals(Car.class)) {
-			return new Car(CAR_TANKSIZE, CAR_CONSUMPTIONPER5SEC);
+			return new Car(ID, CAR_TANKSIZE, CAR_CONSUMPTIONPER5SEC);
 		} else if(clazz.equals(Bus.class)) {
-			return new Bus(BUS_TANKSIZE, BUS_CONSUMPTIONPER5SEC);
+			return new Bus(ID, BUS_TANKSIZE, BUS_CONSUMPTIONPER5SEC);
 		} else if(clazz.equals(Truck.class)) {
-			return new Bus(TRUCK_TANKSIZE, TRUCK_CONSUMPTIONPER5SEC);
+			return new Bus(ID, TRUCK_TANKSIZE, TRUCK_CONSUMPTIONPER5SEC);
 		} else {
 			return null;
 		}

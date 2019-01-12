@@ -11,5 +11,8 @@ public interface Constants {
 	Double TRUCK_TANKSIZE = 130.0;
 	Double TRUCK_CONSUMPTIONPER5SEC = 0.7;
 	
+	Long STEP_TIME = 5000L;
+	Integer VEHICLE_COUNT = 1000;
+	
 
 }
