@@ -17,5 +17,9 @@ public interface Constants {
 	Integer INCIDENT_PERCENTAGE = 5;
 	Integer ALERT_PERCENTAGE = 2;
 	
+	enum Status{
+		ALERT, INCIDENT, OK;
+	}
+	
 
 }

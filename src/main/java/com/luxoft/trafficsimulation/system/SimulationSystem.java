@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.luxoft.trafficsimulation.constants.Constants.Status;
 import com.luxoft.trafficsimulation.factory.VehicleFactory;
 import com.luxoft.trafficsimulation.vehicles.Bus;
 import com.luxoft.trafficsimulation.vehicles.Car;
@@ -69,7 +70,7 @@ public class SimulationSystem {
 	}
 
 	private static void checkVehiclesAndRefuelIfNecessary() {
-		vehicles.stream().filter(v -> v.getCurrentFuelQuantity() / v.getTankSize() < 0.1 && v.getCurrentFuelQuantity() > 0).forEach(v -> v.refuel());
+		vehicles.stream().filter(v -> v.getCurrentFuelQuantity() / v.getTankSize() < 0.1 && !Status.INCIDENT.equals(v.getStatus())).forEach(v -> v.refuel());
 	}
 
 	private static void request() {

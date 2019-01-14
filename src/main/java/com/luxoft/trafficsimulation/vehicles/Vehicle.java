@@ -6,6 +6,8 @@ import com.luxoft.trafficsimulation.events.Alert;
 import com.luxoft.trafficsimulation.events.Incident;
 import com.luxoft.trafficsimulation.system.SimulationSystem;
 import com.luxoft.trafficsimulation.system.SpringContext;
+import static com.luxoft.trafficsimulation.constants.Constants.Status;
+
 
 public abstract class Vehicle {
 	
@@ -15,22 +17,24 @@ public abstract class Vehicle {
 	private Double tankSize;
 	private Double consumptionPer5Sec;
 	private Double currentFuelQuantity;
+	private Status status;
 
 	
 
-	public Vehicle(Integer ID, Double tankSize, Double consumptionPer5Sec) {
+	public Vehicle(Integer ID, Double tankSize, Double consumptionPer5Sec, Status status) {
 		this.ID = ID;
 		this.setConsumptionPer5Sec(consumptionPer5Sec);
 		this.setTankSize(tankSize);
 		this.setCurrentFuelQuantity(tankSize);
+		this.setStatus(status);
 	}
 	
 	public void response() {
 		
 		consume();
-		if(SimulationSystem.getAlert())
+		if(SimulationSystem.getAlert() && !Status.INCIDENT.equals(this.getStatus()) && !Status.ALERT.equals(this.getStatus()))
 			alert();
-		if(SimulationSystem.getIncident())
+		if(SimulationSystem.getIncident() && !Status.INCIDENT.equals(this.getStatus()))
 			incident();
 		
 		
@@ -52,6 +56,7 @@ public abstract class Vehicle {
 	}
 
 	public void refuel() {
+		System.out.println("Refueling " + this.toString());
 		setCurrentFuelQuantity(getTankSize());
 
 	}
@@ -95,8 +100,18 @@ public abstract class Vehicle {
 		ID = iD;
 	}
 	
+
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	
 	public String toString(){
-		return this.getClass().getSimpleName() + " Vehicle ID: " + ID + " Tank Size: " + tankSize + " Current Fuel Quantity: " +  currentFuelQuantity;
+		return this.getClass().getSimpleName() + "Status: " + this.getStatus().name() + " Vehicle ID: " + ID + " Tank Size: " + tankSize + " Current Fuel Quantity: " +  currentFuelQuantity;
 		
 	}
 
