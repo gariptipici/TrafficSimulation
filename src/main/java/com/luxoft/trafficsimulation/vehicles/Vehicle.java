@@ -9,7 +9,7 @@ import com.luxoft.trafficsimulation.system.SpringContext;
 import static com.luxoft.trafficsimulation.constants.Constants.Status;
 
 
-public abstract class Vehicle {
+public class Vehicle {
 	
 
 	
