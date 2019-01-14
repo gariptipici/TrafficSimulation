@@ -36,22 +36,17 @@ public abstract class Vehicle {
 			alert();
 		if(SimulationSystem.getIncident() && !Status.INCIDENT.equals(this.getStatus()))
 			incident();
-		
-		
-		
+
 	}
 
-
-
-	
-	
 	public void alert() {
 		Alert alert = new Alert(this, this);
 		SpringContext.getEventPublisher().publish(alert);
 	}
 
 	public void incident() {
-		Incident incident = new Incident(this, SimulationSystem.getRandomVehicle());
+		Vehicle otherVehicle = SimulationSystem.getRandomVehicle();
+		Incident incident = new Incident(this, otherVehicle);
 		SpringContext.getEventPublisher().publish(incident);
 	}
 

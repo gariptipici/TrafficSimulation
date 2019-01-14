@@ -22,6 +22,7 @@ public class SimulationSystem {
 	public static List<Vehicle> vehicles;
 
 	static {
+		System.out.println("--------------CREATION--------------------");
 		vehicles = new ArrayList<>();
 		for (Integer i = 0; i < VEHICLE_COUNT; i++) {
 			if (i % 3 == 0) {
@@ -32,7 +33,7 @@ public class SimulationSystem {
 				vehicles.add(VehicleFactory.getVehicle(i, Truck.class));
 			}
 		}
-
+		System.out.println("------------------------------------------");
 	}
 
 	public static Boolean getIncident() {
@@ -70,7 +71,20 @@ public class SimulationSystem {
 	}
 
 	private static void checkVehiclesAndRefuelIfNecessary() {
-		vehicles.stream().filter(v -> v.getCurrentFuelQuantity() / v.getTankSize() < 0.1 && !Status.INCIDENT.equals(v.getStatus())).forEach(v -> v.refuel());
+		vehicles.stream().filter(v -> v.getCurrentFuelQuantity() / v.getTankSize() < 0.1 && !Status.INCIDENT.equals(v.getStatus())).forEach(v -> 
+				{
+					v.refuel();
+					if(Status.ALERT.equals(v.getStatus())) {
+						repairVehicle(v);
+					}
+					
+				}
+		);
+	}
+	
+	private static void repairVehicle(Vehicle vehicle) {
+		System.out.println("Repairing Vehicle " + vehicle.getStatus().name());
+		vehicle.setStatus(Status.OK);
 	}
 
 	private static void request() {
@@ -79,7 +93,7 @@ public class SimulationSystem {
 
 	private static void oneStep() {
 		counter++;
-		System.out.println(counter);
+		System.out.println(counter + "th Step");
 		try {
 			Thread.sleep(STEP_TIME);
 		} catch (InterruptedException e) {
