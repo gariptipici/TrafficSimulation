@@ -12,7 +12,10 @@ public interface Constants {
 	Double TRUCK_CONSUMPTIONPER5SEC = 0.7;
 	
 	Long STEP_TIME = 5000L;
-	Integer VEHICLE_COUNT = 1000;
+	Integer VEHICLE_COUNT = 10;
+	
+	Integer INCIDENT_PERCENTAGE = 5;
+	Integer ALERT_PERCENTAGE = 2;
 	
 
 }

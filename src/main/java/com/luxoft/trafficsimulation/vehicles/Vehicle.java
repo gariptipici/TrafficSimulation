@@ -2,7 +2,15 @@ package com.luxoft.trafficsimulation.vehicles;
 
 
 
+import com.luxoft.trafficsimulation.events.Alert;
+import com.luxoft.trafficsimulation.events.Incident;
+import com.luxoft.trafficsimulation.system.SimulationSystem;
+import com.luxoft.trafficsimulation.system.SpringContext;
+
 public abstract class Vehicle {
+	
+
+	
 	private Integer ID;
 	private Double tankSize;
 	private Double consumptionPer5Sec;
@@ -18,16 +26,30 @@ public abstract class Vehicle {
 	}
 	
 	public void response() {
+		
 		consume();
-		incident();
-		alert();
+		if(SimulationSystem.getAlert())
+			alert();
+		if(SimulationSystem.getIncident())
+			incident();
+		
+		
+		
 	}
 
 
 
-	protected abstract void incident();
+	
+	
+	public void alert() {
+		Alert alert = new Alert(this, this);
+		SpringContext.getEventPublisher().publish(alert);
+	}
 
-	protected abstract void alert();
+	public void incident() {
+		Incident incident = new Incident(this, SimulationSystem.getRandomVehicle());
+		SpringContext.getEventPublisher().publish(incident);
+	}
 
 	public void refuel() {
 		setCurrentFuelQuantity(getTankSize());
@@ -35,7 +57,10 @@ public abstract class Vehicle {
 	}
 
 	private void consume() {
-		setCurrentFuelQuantity(getCurrentFuelQuantity() - getConsumptionPer5Sec());
+		Double fuel = getCurrentFuelQuantity();
+		Double consume = getConsumptionPer5Sec();
+		if(fuel > getConsumptionPer5Sec())
+			setCurrentFuelQuantity(fuel - consume);
 	}
 
 	public Double getTankSize() {
@@ -68,6 +93,11 @@ public abstract class Vehicle {
 
 	public void setID(Integer iD) {
 		ID = iD;
+	}
+	
+	public String toString(){
+		return this.getClass().getSimpleName() + " Vehicle ID: " + ID + " Tank Size: " + tankSize + " Current Fuel Quantity: " +  currentFuelQuantity;
+		
 	}
 
 }
