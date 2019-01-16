@@ -15,7 +15,8 @@ Total count 1000 (generate)
 
 ·         These vehicles are moving in city and every 5 seconds report about remaining fuel in tank.
 
-          Mileage stats:
+
+Mileage stats:
 
 o   Car
 
