@@ -57,10 +57,10 @@ o   Incident
  
 
 
-1.    a) Emulator (java only) of vehicles in city behavior created.
+1.    Emulator (java only) of vehicles in city behavior created.
 
-2.    b) Implemented backend (Spring boot, in-memory database h2db)
+2.    Implemented backend (Spring boot, in-memory database h2db)
 
-3.    c) Considered potential scalability of backend
+3.    Considered potential scalability of backend
 
 There are no security requirements
