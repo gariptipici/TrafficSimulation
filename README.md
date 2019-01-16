@@ -11,7 +11,7 @@ o   Bus
 
 o   Truck
 
-Total count 1000 (generate)
+Total count 1000 (generated)
 
 ·         These vehicles are moving in city and every 5 seconds report about remaining fuel in tank.
 
@@ -56,12 +56,11 @@ o   Incident
 
  
 
-Please implement:
 
-1.    a)    Emulator (java only) of vehicles in city behavior
+1.    a) Emulator (java only) of vehicles in city behavior created.
 
-2.    b) Implement backend (Spring boot, in-memory database h2db)
+2.    b) Implemented backend (Spring boot, in-memory database h2db)
 
-3.    c) Consider potential scalability of backend
+3.    c) Considered potential scalability of backend
 
 There are no security requirements
