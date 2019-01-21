@@ -88,7 +88,7 @@ public class SimulationSystem {
 	}
 
 	private static void request() {
-		vehicles.stream().forEach(v -> v.response());
+		vehicles.stream().forEach(Vehicle::response);
 	}
 
 	private static void oneStep() {
