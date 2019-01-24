@@ -51,7 +51,7 @@ public class Vehicle {
 	}
 
 	public void refuel() {
-		System.out.println("Refueling " + this.toString());
+		System.out.println("Refueling " + this);
 		setCurrentFuelQuantity(getTankSize());
 
 	}

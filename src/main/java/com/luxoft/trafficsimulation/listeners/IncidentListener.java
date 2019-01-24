@@ -20,8 +20,8 @@ public class IncidentListener implements ApplicationListener<Incident> {
     		vehicle.setCurrentFuelQuantity(0.0);
     		otherVehicle.setCurrentFuelQuantity(0.0);
         	otherVehicle.setStatus(Status.INCIDENT);
-        	System.out.println("Incident sent: v1 - " + vehicle.toString());
-        	System.out.println("Incident sent: v2 - " + otherVehicle.toString());
+        	System.out.println("Incident sent: v1 - " + vehicle);
+        	System.out.println("Incident sent: v2 - " + otherVehicle);
     	}
 
     	

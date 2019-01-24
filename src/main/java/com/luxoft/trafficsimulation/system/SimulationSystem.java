@@ -65,7 +65,7 @@ public class SimulationSystem {
 
 	private static void report() {
 		System.out.println("------------------------REPORT-------------------------------");
-		vehicles.stream().forEach(v -> System.out.println(v.toString()));
+		vehicles.stream().forEach(System.out::println);
 		System.out.println("-------------------------------------------------------------");
 
 	}

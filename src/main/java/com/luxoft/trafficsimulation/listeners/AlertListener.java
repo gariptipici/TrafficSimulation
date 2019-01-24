@@ -43,7 +43,7 @@ public class AlertListener implements ApplicationListener<Alert> {
     	} else {
     		
     	}
-    	System.out.println("Alert sent: " + vehicle.toString());
+    	System.out.println("Alert sent: " + vehicle);
         
     }
 }
